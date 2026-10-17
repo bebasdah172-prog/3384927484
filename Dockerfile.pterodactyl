@@ -1,0 +1,28 @@
+FROM python:3.11-slim-bookworm
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONUNBUFFERED=1 \
+    PLAYWRIGHT_BROWSERS_PATH=/opt/ms-playwright \
+    USER=container \
+    HOME=/home/container
+
+# Install browser libraries and the browser at image-build time, when apt can
+# run as root. Pterodactyl server processes run as the unprivileged container user.
+COPY duckapi/requirements.txt /tmp/duckapi-requirements.txt
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends bash ca-certificates passwd tini \
+    && python -m pip install --no-cache-dir -r /tmp/duckapi-requirements.txt \
+    && python -m playwright install-deps chromium \
+    && python -m playwright install chromium \
+    && chmod -R a+rX "${PLAYWRIGHT_BROWSERS_PATH}" \
+    && rm -f /tmp/duckapi-requirements.txt \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN useradd --create-home --uid 1000 --shell /bin/bash container
+
+WORKDIR /home/container
+COPY --chmod=755 pterodactyl-entrypoint.sh /entrypoint.sh
+
+USER container
+ENTRYPOINT ["/usr/bin/tini", "-g", "--"]
+CMD ["/entrypoint.sh"]

@@ -1,0 +1,44 @@
+entrypoint = "main.py"
+modules = ["python-3.11", "nodejs-24"]
+
+[nix]
+channel = "stable-25_05"
+packages = ["python313Packages.playwright", "killall", "gcc", "python313Packages.pyngrok", "chromium"]
+
+[unitTest]
+language = "python3"
+
+[gitHubImport]
+requiredFiles = [".replit", "replit.nix"]
+
+[deployment]
+run = ["python3", "main.py"]
+deploymentTarget = "cloudrun"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "DuckAI API"
+
+[[workflows.workflow]]
+name = "DuckAI API"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 main.py"
+waitForPort = 8080
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+[[ports]]
+localPort = 8080
+externalPort = 80

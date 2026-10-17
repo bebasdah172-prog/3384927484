@@ -1,0 +1,33 @@
+[08:14:29] Chromium Headless Shell 131.0.6778.33 (playwright build v1148) downloaded to /home/container/.cache/ms-playwright/chromium_headless_shell-1148
+[08:14:31] Playwright Host validation warning: 
+[08:14:31] ╔══════════════════════════════════════════════════════╗
+[08:14:31] ║ Host system is missing dependencies to run browsers. ║
+[08:14:31] ║ Please install them with the following command:      ║
+[08:14:31] ║                                                      ║
+[08:14:31] ║     sudo playwright install-deps                     ║
+[08:14:31] ║                                                      ║
+[08:14:31] ║ Alternatively, use apt:                              ║
+[08:14:31] ║     sudo apt-get install libnss3\                    ║
+[08:14:31] ║         libnspr4\                                    ║
+[08:14:31] ║         libatk1.0-0\                                 ║
+[08:14:31] ║         libatk-bridge2.0-0\                          ║
+[08:14:31] ║         libcups2\                                    ║
+[08:14:31] ║         libxcomposite1\                              ║
+[08:14:31] ║         libxdamage1\                                 ║
+[08:14:31] ║         libatspi2.0-0                                ║
+[08:14:31] ║                                                      ║
+[08:14:31] ║ <3 Playwright Team                                   ║
+[08:14:31] ╚══════════════════════════════════════════════════════╝
+[08:14:31]     at validateDependenciesLinux (/home/container/duckapi/.venv/lib/python3.11/site-packages/playwright/driver/package/lib/server/registry/dependencies.js:216:9)
+[08:14:31]     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[08:14:31]     at async Registry._validateHostRequirements (/home/container/duckapi/.venv/lib/python3.11/site-packages/playwright/driver/package/lib/server/registry/index.js:753:43)
+[08:14:31]     at async Registry._validateHostRequirementsForExecutableIfNeeded (/home/container/duckapi/.venv/lib/python3.11/site-packages/playwright/driver/package/lib/server/registry/index.js:851:7)
+[08:14:31]     at async Registry.validateHostRequirementsForExecutablesIfNeeded (/home/container/duckapi/.venv/lib/python3.11/site-packages/playwright/driver/package/lib/server/registry/index.js:840:43)
+[08:14:31]     at async t.<anonymous> (/home/container/duckapi/.venv/lib/python3.11/site-packages/playwright/driver/package/lib/cli/program.js:137:7)
+[08:14:34] Interpreter: /home/container/duckapi/.venv/bin/python
+[08:14:34] Starting uvicorn on port 13335...
+[08:14:34]   dashboard : http://localhost:13335/
+[08:14:34]   log file  : /home/container/duckapi/server.log
+[08:14:46] INFO:     Started server process [175]
+[08:14:46] INFO:     Waiting for application startup.
+[08:14:52] WARNING:duckai:prewarm failed (BrowserType.launch: 

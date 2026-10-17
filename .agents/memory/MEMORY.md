@@ -1,0 +1,1 @@
+- [DuckAPI Nix runtime](duckapi-nix-runtime.md) — the nested venv needs pip's user mode disabled, and Playwright native modules need Nix's libstdc++ exposed to the server process.
